@@ -7,12 +7,26 @@ xmlns:f="http://java.sun.com/jsf/core"
 xmlns:p="http://primefaces.org/ui"
 xmlns:ui="http://java.sun.com/jsf/facelets"
 >
-<head>
+<h:head>
+<h:outputStylesheet library="css" name="style.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Layout Sistema</title>
-</head>
-<body>
+</h:head>
+<h:body>
 
+	<p:growl id="msgGlobal" life="3000" />
 
-</body>
+	<p:layout fullPage="true" style="">
+	
+		<p:layoutUnit position="north" resizable="true" size="100" minSize="40"	maxSize="200">
+       		<ui:insert name="menu" />
+    	</p:layoutUnit>
+
+		<p:layoutUnit position="center">
+        	<ui:insert name="conteudo" /> 
+    	</p:layoutUnit>
+    	
+	</p:layout>
+
+</h:body>
 </html>
