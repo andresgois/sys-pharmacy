@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import br.com.farmacia.domain.Fornecedores;
 import br.com.farmacia.factory.ConnectionFactory;
@@ -70,6 +71,48 @@ public class FornecedoresDAO {
         return retorno;
     }
     
+    public ArrayList<Fornecedores> buscaPorDescricao(Fornecedores f) throws SQLException{
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT * FROM fornecedores ");
+        sb.append("WHERE descricao LIKE ?");
+        sb.append(" ORDER BY descricao DESC");
+        
+        Connection con = ConnectionFactory.conectar();
+        PreparedStatement ps = con.prepareStatement(sb.toString());
+        ps.setString(1, "%"+f.getDescricao()+"%");
+        
+        ResultSet rs = ps.executeQuery();
+        ArrayList<Fornecedores> lista = new ArrayList<Fornecedores>();
+        
+        while(rs.next()) {
+            Fornecedores item = new Fornecedores();
+            item.setCodigo(rs.getLong("codigo"));
+            item.setDescricao(rs.getString("descricao"));
+            lista.add(item);
+        }
+        return lista;
+    }
+    
+    public ArrayList<Fornecedores> listar() throws SQLException{
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT * FROM fornecedores ");
+        sb.append("ORDER BY descricao DESC");
+        
+        Connection con = ConnectionFactory.conectar();
+        PreparedStatement ps = con.prepareStatement(sb.toString());
+        
+        ResultSet rs = ps.executeQuery();
+        ArrayList<Fornecedores> lista = new ArrayList<Fornecedores>();
+        
+        while(rs.next()) {
+            Fornecedores f = new Fornecedores();
+            f.setCodigo(rs.getLong("codigo"));
+            f.setDescricao(rs.getString("descricao"));
+            lista.add(f);
+        }
+        return lista;
+    }
+    
     public static void main(String[] args) {
         /*
         // Salvando dados
@@ -117,5 +160,48 @@ public class FornecedoresDAO {
             System.out.println("==== Erro ao atualizado!");
             e.printStackTrace();
         }*/
+        
+        /*
+        // busca por código
+        FornecedoresDAO fdao =  new FornecedoresDAO();
+        Fornecedores f1 = new Fornecedores();
+        f1.setCodigo(4L);        
+        
+        try {
+            Fornecedores forn = fdao.buscaPorCodigo(f1);
+            System.out.println("==== Encontrado com sucesso!");
+            System.out.println(forn);
+        } catch (SQLException e) {
+            System.out.println("==== Erro ao pesquisa!");
+            e.printStackTrace();
+        }*/
+        
+        /*
+        // listar todos
+        FornecedoresDAO fdao =  new FornecedoresDAO();
+        try {
+            ArrayList<Fornecedores> lista = fdao.listar();
+            for(Fornecedores f : lista) {
+                System.out.println("Resultado: "+f);
+            }
+        } catch (SQLException e) {
+            System.out.println("==== Erro ao listar!");
+            e.printStackTrace();
+        }*/
+        
+        // buscar por descrição
+        FornecedoresDAO fdao =  new FornecedoresDAO();
+        Fornecedores f1 = new Fornecedores();
+        f1.setDescricao("Descrição 2");        
+        
+        try {
+            ArrayList<Fornecedores> lista = fdao.buscaPorDescricao(f1);
+            for(Fornecedores f : lista) {
+                System.out.println("Resultado: "+f);
+            }
+        } catch (SQLException e) {
+            System.out.println("==== Erro ao buscar!");
+            e.printStackTrace();
+        }
     }
 }
