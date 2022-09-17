@@ -11,6 +11,9 @@ public class ConnectionFactory {
     private static final String URL = "jdbc:mysql://localhost:3306/farmacia?autoReconnect=true&useSSL=false";
     
     public static Connection conectar() throws SQLException {
+        // Driver referência para versões antigas do java
+        DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+        
         Connection conexao = (Connection) DriverManager.getConnection(URL,
                 USUARIO, SENHA);
         return conexao;
