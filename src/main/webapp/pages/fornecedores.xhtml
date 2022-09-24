@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -11,19 +11,18 @@
 	</ui:define>
 
 	<ui:define name="conteudo">
-	
+	<h:form id="frmFornecedores">
 		<p:dataTable id="tbFornecedores" widgetVar="tabelaFornecedores"
 			emptyMessage="Nenhum registro encontrado" var="item"
 			value="#{MBFornecedores.itens}" paginator="true" rows="7">
 
 			<f:facet name="header">Lista de Fornecedores</f:facet>
 
-			<p:column headerText="Código" sortBy=""
-				filterBy="">
+			<p:column headerText="Código" sortBy="#{item.codigo}" filterBy="#{item.codigo}">
 				<h:outputText value="#{item.codigo}" />
 			</p:column>
 
-			<p:column headerText="Descrição">
+			<p:column headerText="Descrição" sortBy="#{item.descricao}" filterBy="#{item.descricao}">
 				<h:outputText value="#{item.descricao}" />
 			</p:column>
 
@@ -42,11 +41,36 @@
 			</p:column>
 
 			<f:facet name="footer">
-				<!-- <p:commandButton actionListener=""
-					value="Novo" oncomplete=""
-					update="" /> -->
-			</f:facet>
+					<p:commandButton
+						actionListener="#{MBFornecedores.prepararNovo}"  
+						value="Novo" 
+						oncomplete="PF('dlgforNovo').show();" 
+						update=":frmforNovo:pnNovo" />
+				</f:facet>
 		</p:dataTable>
+	</h:form>
+	
+	<!-- JANELA MODAL PARA INSERIR -->
+		<p:dialog widgetVar="dlgforNovo" closable="false" draggable="false"
+			resizable="false" header="Cadastrar Fornecedores" modal="true" appendTo="@(body)">
+			<h:form id="frmforNovo">
+				<h:panelGrid id="pnNovo" columns="2">
+					<p:outputLabel value="Descrição" for="txtnovodesc" />
+					<h:inputText size="30" maxlength="50" id="txtnovodesc"  required="true" 
+					requiredMessage="O campo está vazio" value="#{MBFornecedores.fornecedores.descricao}" />
+				</h:panelGrid>
+				<h:panelGrid columns="2">
+					<p:commandButton value="Gravar" 
+						actionListener="#{MBFornecedores.novo}" 
+						oncomplete="PF('dlgforNovo').hide(); PF('tabelaFornecedores').clearFilters();" 
+						update=":frmFornecedores:tbFornecedores" />
+						
+					<p:commandButton value="Cancelar" 
+					oncomplete="PF('dlgforNovo').hide();" />
+				</h:panelGrid>
+				
+			</h:form>
+			</p:dialog>
 	</ui:define>
 
 </ui:composition>
