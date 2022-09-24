@@ -18,24 +18,34 @@ public class FornecedoresBean {
     private Fornecedores fornecedores;
     private ListDataModel<Fornecedores> itens;
     
-    /***
-     * Ao iniciar o projeto, ele executa esse método
-     */
+    /**** Ao iniciar o projeto, ele executa esse método *******/
     @PostConstruct
     public void prepararPesquisa() {
-
         try {
             FornecedoresDAO fdao = new FornecedoresDAO();
             ArrayList<Fornecedores> lista = fdao.listar();
             itens = new ListDataModel<Fornecedores>(lista);
 
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            //JSFUtil.adicionarMensagemErro("ex.getMessage()");
             e.printStackTrace();
         }
-
     }
+    
+    public void prepararNovo() {
+        fornecedores = new Fornecedores();
+    }
+    
+    public void novo() {
+        try {
+            FornecedoresDAO fdao = new FornecedoresDAO();
+            fdao.salvar(fornecedores);
+            ArrayList<Fornecedores> lista = fdao.listar();
+            itens = new ListDataModel<Fornecedores>(lista);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
     public ListDataModel<Fornecedores> getItens() {
         return itens;
     }
