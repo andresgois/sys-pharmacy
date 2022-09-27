@@ -10,6 +10,7 @@ import javax.faces.model.ListDataModel;
 
 import br.com.farmacia.DAO.FornecedoresDAO;
 import br.com.farmacia.domain.Fornecedores;
+import br.com.farmacia.util.JSFUtil;
 
 @ManagedBean(name = "MBFornecedores")
 @ViewScoped
@@ -27,6 +28,7 @@ public class FornecedoresBean {
             itens = new ListDataModel<Fornecedores>(lista);
 
         } catch (SQLException e) {
+            JSFUtil.adicionarMensagemError(e.getMessage());
             e.printStackTrace();
         }
     }
@@ -41,9 +43,19 @@ public class FornecedoresBean {
             fdao.salvar(fornecedores);
             ArrayList<Fornecedores> lista = fdao.listar();
             itens = new ListDataModel<Fornecedores>(lista);
+            JSFUtil.adicionarMensagemSucesso("Registro salvo com sucesso!");
         } catch (SQLException e) {
+            JSFUtil.adicionarMensagemError(e.getMessage());
             e.printStackTrace();
         }
+    }
+    
+    public void prepararExcluir() {
+        fornecedores = itens.getRowData();
+    }
+    
+    public void Excluir() {
+        
     }
     
     public ListDataModel<Fornecedores> getItens() {
