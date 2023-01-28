@@ -14,6 +14,7 @@
 		<h:form id="frmFornecedores">
 			<p:dataTable id="tbFornecedores" widgetVar="tabelaFornecedores"
 				emptyMessage="Nenhum registro encontrado" var="item"
+				filteredValue="#{MBFornecedores.itensFiltrados}"
 				value="#{MBFornecedores.itens}" paginator="true" rows="7">
 
 				<f:facet name="header">Lista de Fornecedores</f:facet>
@@ -29,16 +30,19 @@
 				</p:column>
 
 				<p:column headerText="Opções">
-					<p:commandButton icon="ui-icon-trash" actionListener="#{MBFornecedores.prepararExcluir}"
-						value="Excluir" oncomplete="PF('dlgforExcluir').show();"
+					<p:commandButton icon="ui-icon-trash" value="Excluir"
+						oncomplete="PF('dlgforExcluir').show();"
 						update=":frmforExcluir:pnExcluir">
-						<f:setPropertyActionListener value="#{item}" 
-						target="#{MBFornecedores.fornecedores}" /> 
+						<f:setPropertyActionListener value="#{item}"
+							target="#{MBFornecedores.fornecedores}" />
 					</p:commandButton>
 
 					<p:commandButton icon="ui-icon-pencil"
-						actionListener="#{MBFornecedores.prepararEditar}" oncomplete="PF('dlgforEditar').show();" update=":frmforEditar:pnforEditar"
-					 />
+						oncomplete="PF('dlgforEditar').show();"
+						update=":frmforEditar:pnforEditar">
+						<f:setPropertyActionListener value="#{item}"
+							target="#{MBFornecedores.fornecedores}" />
+						</p:commandButton>
 				</p:column>
 
 				<f:facet name="footer">
@@ -98,8 +102,8 @@
 			</h:form>
 
 		</p:dialog>
-	
-	
+
+
 		<!-- JANELA MODAL PARA EDITAR -->
 		<p:dialog widgetVar="dlgforEditar" closable="false" draggable="false"
 			resizable="false" header="Editar Fornecedor" modal="true"
@@ -125,7 +129,7 @@
 			</h:form>
 
 		</p:dialog>
-	
+
 	</ui:define>
 
 </ui:composition>

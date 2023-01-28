@@ -17,16 +17,15 @@ import br.com.farmacia.util.JSFUtil;
 public class FornecedoresBean {
 
     private Fornecedores fornecedores;
-    private ListDataModel<Fornecedores> itens;
+    private ArrayList<Fornecedores> itens;
+    private ArrayList<Fornecedores> itensFiltrados;
     
     /**** Ao iniciar o projeto, ele executa esse método *******/
     @PostConstruct
     public void prepararPesquisa() {
         try {
             FornecedoresDAO fdao = new FornecedoresDAO();
-            ArrayList<Fornecedores> lista = fdao.listar();
-            itens = new ListDataModel<Fornecedores>(lista);
-
+            itens =  fdao.listar();
         } catch (SQLException e) {
             JSFUtil.adicionarMensagemError(e.getMessage());
             e.printStackTrace();
@@ -41,8 +40,7 @@ public class FornecedoresBean {
         try {
             FornecedoresDAO fdao = new FornecedoresDAO();
             fdao.salvar(fornecedores);
-            ArrayList<Fornecedores> lista = fdao.listar();
-            itens = new ListDataModel<Fornecedores>(lista);
+            itens = fdao.listar();
             JSFUtil.adicionarMensagemSucesso("Registro salvo com sucesso!");
         } catch (SQLException e) {
             JSFUtil.adicionarMensagemError(e.getMessage());
@@ -51,15 +49,14 @@ public class FornecedoresBean {
     }
     
     public void prepararExcluir() {
-        fornecedores = itens.getRowData();
+        //fornecedores = itens.getRowData();
     }
     
     public void excluir() {
         try {
             FornecedoresDAO fdao = new FornecedoresDAO();
             fdao.excluir(fornecedores);
-            ArrayList<Fornecedores> lista = fdao.listar();
-            itens = new ListDataModel<Fornecedores>(lista);
+            itens = fdao.listar();
             JSFUtil.adicionarMensagemSucesso("Registro excluído com sucesso!");
         } catch (SQLException e) {
             JSFUtil.adicionarMensagemError(e.getMessage());
@@ -67,12 +64,23 @@ public class FornecedoresBean {
         } 
     }
     
-    public ListDataModel<Fornecedores> getItens() {
-        return itens;
+    public void prepararEditar() {
+        //fornecedores = itens.getRowData();
     }
-    public void setItens(ListDataModel<Fornecedores> itens) {
-        this.itens = itens;
+    
+    public void editar() {
+        try {
+            FornecedoresDAO fdao = new FornecedoresDAO();
+            fdao.editar(fornecedores);
+            itens = fdao.listar();
+            JSFUtil.adicionarMensagemSucesso("Registro atualizado com sucesso!");
+        } catch (SQLException e) {
+            JSFUtil.adicionarMensagemError("e.getMessage()");
+            e.printStackTrace();
+        } 
     }
+    
+   
     public Fornecedores getFornecedores() {
         return fornecedores;
     }
@@ -80,4 +88,21 @@ public class FornecedoresBean {
         this.fornecedores = fornecedores;
     }
 
+    public ArrayList<Fornecedores> getItens() {
+        return itens;
+    }
+
+    public void setItens(ArrayList<Fornecedores> itens) {
+        this.itens = itens;
+    }
+
+    public ArrayList<Fornecedores> getItensFiltrados() {
+        return itensFiltrados;
+    }
+
+    public void setItensFiltrados(ArrayList<Fornecedores> itensFiltrados) {
+        this.itensFiltrados = itensFiltrados;
+    }
+
+    
 }
