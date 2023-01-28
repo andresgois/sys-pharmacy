@@ -15,15 +15,7 @@ public class Produtos {
     public void setCodigo(Long codigo) {
         this.codigo = codigo;
     }
-
-    public String getDesricao() {
-        return descricao;
-    }
-
-    public void setDesricao(String desricao) {
-        this.descricao = desricao;
-    }
-
+    
     public Long getQuantidade() {
         return quantidade;
     }
@@ -39,6 +31,14 @@ public class Produtos {
     public void setPreco(Double preco) {
         this.preco = preco;
     }
+    
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 
     public Fornecedores getFornecedores() {
         return fornecedores;
@@ -50,7 +50,7 @@ public class Produtos {
 
     @Override
     public String toString() {
-        return this.getDesricao() 
+        return this.getDescricao() 
                 + " - R$ " + this.getPreco() 
                 + " - " + this.getQuantidade() 
                 + " - " + this.getFornecedores();
