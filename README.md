@@ -12,6 +12,10 @@
 
 - Cole as lib's dentro de WEB-INF > lib
 
+### Acesso a aplicação
+
+- [Página de fornecedores](http://localhost:8080/farmacia/faces/pages/fornecedores.xhtml)
+
 ## Configurando o server
 - Clique em 
 ```No servers are available...```

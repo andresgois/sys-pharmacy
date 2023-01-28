@@ -54,8 +54,17 @@ public class FornecedoresBean {
         fornecedores = itens.getRowData();
     }
     
-    public void Excluir() {
-        
+    public void excluir() {
+        try {
+            FornecedoresDAO fdao = new FornecedoresDAO();
+            fdao.excluir(fornecedores);
+            ArrayList<Fornecedores> lista = fdao.listar();
+            itens = new ListDataModel<Fornecedores>(lista);
+            JSFUtil.adicionarMensagemSucesso("Registro excluído com sucesso!");
+        } catch (SQLException e) {
+            JSFUtil.adicionarMensagemError(e.getMessage());
+            e.printStackTrace();
+        } 
     }
     
     public ListDataModel<Fornecedores> getItens() {
