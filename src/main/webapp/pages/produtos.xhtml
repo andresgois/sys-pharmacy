@@ -56,16 +56,14 @@
 						oncomplete="PF('dlgproExcluir').show();"
 						update=":frmproExcluir:pnproExcluir">
 						<f:setPropertyActionListener value="#{item}"
-							target="#{MBProduto.produtos}"></f:setPropertyActionListener>
+							target="#{MBProduto.produtos}" />
 					</p:commandButton>
-
 
 					<p:commandButton icon="ui-icon-pencil"
 						oncomplete="PF('dlgproEditar').show();"
-						update=":frmproEditar:pnproEditar"
-						actionListener="#{MBProduto.prepararEditar}">
+						update=":frmproEditar:pnproEditar" >
 						<f:setPropertyActionListener value="#{item}"
-							target="#{MBProduto.produtos}"></f:setPropertyActionListener>
+							target="#{MBProduto.produtos}" />
 					</p:commandButton>
 
 				</p:column>
@@ -106,7 +104,6 @@
 						<f:selectItem itemValue="" itemLabel="Selecione um Fornecedor" />
 						<f:selectItems value="#{MBProduto.comboFornecedores}" var="item"
 							itemValue="#{item.codigo}" itemLabel="#{item.descricao}">
-
 						</f:selectItems>
 					</p:selectOneMenu>
 
@@ -172,7 +169,6 @@
 					<p:selectOneMenu value="#{MBProduto.produtos.fornecedores.codigo}"
 						filter="true" required="true"
 						requiredMessage="O campo Fornecedor é obrigatório.">
-
 
 						<f:selectItems value="#{MBProduto.comboFornecedores}" var="item"
 							itemValue="#{item.codigo}" itemLabel="#{item.descricao}">
