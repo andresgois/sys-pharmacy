@@ -58,7 +58,6 @@ public class ProdutoBean {
     
     @PostConstruct
     public void prepararPesquisa() {
-        
         try {
             ProdutoDAO fdao = new ProdutoDAO();
             itens = fdao.listar();
@@ -71,7 +70,6 @@ public class ProdutoBean {
     }
     
     public void prepararNovo() {
-        
         try {
             produtos = new Produtos();
             FornecedoresDAO dao = new FornecedoresDAO();
@@ -83,15 +81,11 @@ public class ProdutoBean {
     }
     
     public void novo() {
-        
         try {
             ProdutoDAO fdao = new ProdutoDAO();
             fdao.salvar(produtos);
-            
             itens = fdao.listar();
-            
             JSFUtil.adicionarMensagemSucesso("Produto salvo com sucesso!");
-            
         } catch (SQLException e) {
             JSFUtil.adicionarMensagemError("ex.getMessage()");
             e.printStackTrace();
@@ -102,11 +96,8 @@ public class ProdutoBean {
         try {
             ProdutoDAO fdao = new ProdutoDAO();
             fdao.excluir(produtos);
-            
             itens = fdao.listar();
-            
             JSFUtil.adicionarMensagemSucesso("Produto excluido com sucesso!");
-            
         } catch (SQLException e) {
             JSFUtil.adicionarMensagemError("ex.getMessage()");
             e.printStackTrace();
@@ -117,11 +108,8 @@ public class ProdutoBean {
         try {
             ProdutoDAO fdao = new ProdutoDAO();
             fdao.editar(produtos);
-            
             itens = fdao.listar();
-            
             JSFUtil.adicionarMensagemSucesso("Produto editado com sucesso!");
-            
         } catch (SQLException e) {
             JSFUtil.adicionarMensagemError("ex.getMessage()");
             e.printStackTrace();
