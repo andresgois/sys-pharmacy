@@ -67,7 +67,7 @@
 				<h:panelGrid columns="2">
 					<p:commandButton value="Gravar"
 						actionListener="#{MBFornecedores.novo}"
-						oncomplete="PF('dlgforNovo').hide(); PF('tabelaFornecedores').clearFilters();"
+						oncomplete="verificar(xhr, status, args, 'dlgforNovo', 'tabelaFornecedores'); "
 						update=":frmFornecedores:tbFornecedores :msgGlobal" />
 
 					<p:commandButton value="Cancelar"
@@ -102,7 +102,6 @@
 			</h:form>
 
 		</p:dialog>
-
 
 		<!-- JANELA MODAL PARA EDITAR -->
 		<p:dialog widgetVar="dlgforEditar" closable="false" draggable="false"
