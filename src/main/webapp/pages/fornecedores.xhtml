@@ -94,7 +94,7 @@
 				<h:panelGrid columns="2">
 					<p:commandButton value="Excluir"
 						actionListener="#{MBFornecedores.excluir}"
-						oncomplete="PF('dlgforExcluir').hide(); PF('tabelaFornecedores').clearFilters();"
+						oncomplete="verificar(xhr, status, args, 'dlgforExcluir', 'tabelaFornecedores'); "
 						update=":frmFornecedores:tbFornecedores :msgGlobal" />
 					<p:commandButton value="Cancelar"
 						onclick="PF('dlgforExcluir').hide();" />
@@ -120,7 +120,7 @@
 				<h:panelGrid columns="2">
 					<p:commandButton value="Editar"
 						actionListener="#{MBFornecedores.editar}"
-						oncomplete="PF('dlgforEditar').hide(); PF('tabelaFornecedores').clearFilters();"
+						oncomplete="verificar(xhr, status, args, 'dlgforEditar', 'tabelaFornecedores'); "
 						update=":frmFornecedores:tbFornecedores :msgGlobal" />
 					<p:commandButton value="Cancelar"
 						onclick="PF('dlgforEditar').hide();" />
@@ -130,5 +130,17 @@
 		</p:dialog>
 
 	</ui:define>
+	
+	<h:outputScript>
+		function verificar(xhr, status, args, dlg, tb) {
+		    if(args.validationFailed) {
+		        PF(dlg).jq.effect("shake", {times:5}, 100);
+		    }
+		    else {
+		        PF(dlg).hide();
+		        PF(tb).clearFilters();
+		    }
+		}
+	</h:outputScript>
 
 </ui:composition>

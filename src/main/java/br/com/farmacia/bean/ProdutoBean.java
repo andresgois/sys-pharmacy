@@ -2,11 +2,9 @@ package br.com.farmacia.bean;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-
 import br.com.farmacia.DAO.FornecedoresDAO;
 import br.com.farmacia.DAO.ProdutoDAO;
 import br.com.farmacia.domain.Fornecedores;
@@ -117,7 +115,6 @@ public class ProdutoBean {
     }
     
     public void prepararEditar() {
-        
         try {
             produtos = new Produtos();
             FornecedoresDAO dao = new FornecedoresDAO();
