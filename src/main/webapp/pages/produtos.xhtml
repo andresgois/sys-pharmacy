@@ -110,7 +110,7 @@
 				</h:panelGrid>
 				<h:panelGrid columns="2">
 					<p:commandButton value="Gravar" actionListener="#{MBProduto.novo}"
-						oncomplete="verificar(xhr, status, args, 'dlgproNovo', 'tbProdutos'); "
+						oncomplete="verificar(xhr, status, args, 'dlgproNovo', 'tabelaProdutos'); "
 						update=":frmProdutos:tbProdutos :msgGlobal" />
 					<p:commandButton value="Cancelar" process="@this"
 						onclick="PF('dlgproNovo').hide();" />

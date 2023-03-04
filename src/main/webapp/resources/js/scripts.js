@@ -1,4 +1,5 @@
-/*function verificar(xhr, status, args, dlg, tb) {
+function verificar(xhr, status, args, dlg, tb) {
+	console.log("Verificar");
     if(args.validationFailed) {
         PF(dlg).jq.effect("shake", {times:5}, 100);
     }
@@ -6,6 +7,6 @@
         PF(dlg).hide();
         PF(tb).clearFilters();
     }
-}*/
+}
 
 console.log('Atualizado')
