@@ -1,5 +1,15 @@
 eclipse.preferences.version=1
+encoding//src/main/java/br/com/farmacia/DAO/FornecedoresDAO.java=UTF-8
+encoding//src/main/java/br/com/farmacia/DAO/ProdutoDAO.java=UTF-8
+encoding//src/main/java/br/com/farmacia/bean/ProdutoBean.java=UTF-8
+encoding//src/main/java/br/com/farmacia/domain/Fornecedores.java=UTF-8
+encoding//src/main/java/br/com/farmacia/domain/Produtos.java=UTF-8
+encoding//src/main/java/br/com/farmacia/factory/ConnectionFactory.java=UTF-8
+encoding//src/main/java/br/com/farmacia/test/ProdutoDAOTeste.java=UTF-8
+encoding//src/main/java/br/com/farmacia/util/JSFUtil.java=UTF-8
 encoding//src/main/webapp/pages/fornecedores.xhtml=UTF-8
 encoding//src/main/webapp/pages/principal.xhtml=UTF-8
 encoding//src/main/webapp/pages/produtos.xhtml=UTF-8
 encoding/<project>=iso88591
+encoding/README.md=UTF-8
+encoding/script.sql=UTF-8

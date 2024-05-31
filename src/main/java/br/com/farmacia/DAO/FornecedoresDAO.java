@@ -13,7 +13,7 @@ public class FornecedoresDAO {
   
     public void salvar(Fornecedores f) throws SQLException{
         StringBuilder sb = new StringBuilder();
-        sb.append("INSERT INTO fornecedores ");
+        sb.append("INSERT INTO Fornecedores ");
         sb.append(" (descricao) ");
         sb.append(" VALUES (?) ");
         
@@ -26,7 +26,7 @@ public class FornecedoresDAO {
     
     public void excluir(Fornecedores f) throws SQLException{
         StringBuilder sb = new StringBuilder();
-        sb.append("DELETE FROM fornecedores");
+        sb.append("DELETE FROM Fornecedores");
         sb.append(" WHERE codigo = ?;");
         
         Connection con = ConnectionFactory.conectar();
@@ -38,7 +38,7 @@ public class FornecedoresDAO {
     
     public void editar(Fornecedores f) throws SQLException{
         StringBuilder sb = new StringBuilder();
-        sb.append("UPDATE fornecedores ");
+        sb.append("UPDATE Fornecedores ");
         sb.append("SET descricao = ? ");
         sb.append("WHERE codigo = ?");
         
@@ -52,7 +52,7 @@ public class FornecedoresDAO {
     
     public Fornecedores buscaPorCodigo(Fornecedores f) throws SQLException{
         StringBuilder sb = new StringBuilder();
-        sb.append("SELECT * FROM fornecedores ");
+        sb.append("SELECT * FROM Fornecedores ");
         sb.append("WHERE codigo = ?");
         
         Connection con = ConnectionFactory.conectar();
@@ -73,7 +73,7 @@ public class FornecedoresDAO {
     
     public ArrayList<Fornecedores> buscaPorDescricao(Fornecedores f) throws SQLException{
         StringBuilder sb = new StringBuilder();
-        sb.append("SELECT * FROM fornecedores ");
+        sb.append("SELECT * FROM Fornecedores ");
         sb.append("WHERE descricao LIKE ?");
         sb.append(" ORDER BY descricao DESC");
         
@@ -95,7 +95,7 @@ public class FornecedoresDAO {
     
     public ArrayList<Fornecedores> listar() throws SQLException{
         StringBuilder sb = new StringBuilder();
-        sb.append("SELECT * FROM fornecedores ");
+        sb.append("SELECT * FROM Fornecedores ");
         sb.append("ORDER BY descricao DESC");
         
         Connection con = ConnectionFactory.conectar();

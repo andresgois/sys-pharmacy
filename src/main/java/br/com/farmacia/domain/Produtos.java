@@ -1,5 +1,8 @@
 package br.com.farmacia.domain;
 
+import javax.persistence.Table;
+
+@Table(name = "produtos")
 public class Produtos {
    
     private Long codigo;

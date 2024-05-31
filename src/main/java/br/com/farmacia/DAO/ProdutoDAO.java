@@ -13,8 +13,8 @@ import br.com.farmacia.factory.ConnectionFactory;
 public class ProdutoDAO {
     public void salvar(Produtos p) throws SQLException {
         StringBuilder sql = new StringBuilder();
-        sql.append("INSERT INTO produtos ");
-        sql.append("(descricao, preco, quantidade, codigo_for) ");
+        sql.append("INSERT INTO Produtos ");
+        sql.append("(descricao, preco, quantidade, fornecedor_codigo) ");
         sql.append("VALUES (?, ?, ?, ?)");
 
         Connection conexao = ConnectionFactory.conectar();
@@ -30,8 +30,8 @@ public class ProdutoDAO {
     public ArrayList<Produtos> listar()throws SQLException{
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT p.codigo, p.descricao, p.preco, p.quantidade, f.codigo, f.descricao ");
-        sql.append("FROM produtos p ");
-        sql.append("INNER JOIN fornecedores f ON f.codigo = p.codigo_for ");
+        sql.append("FROM Produtos p ");
+        sql.append("INNER JOIN Fornecedores f ON f.codigo = p.fornecedor_codigo ");
         
         Connection conexao = ConnectionFactory.conectar();
         PreparedStatement comando = conexao.prepareStatement(sql.toString());
@@ -57,7 +57,7 @@ public class ProdutoDAO {
     
     public void excluir (Produtos p) throws SQLException{
         StringBuilder sql = new StringBuilder();
-        sql.append("DELETE FROM produtos ");
+        sql.append("DELETE FROM Produtos ");
         sql.append("WHERE codigo = ? ");
         
         Connection conexao = ConnectionFactory.conectar();
@@ -68,8 +68,8 @@ public class ProdutoDAO {
     
     public void editar (Produtos p) throws SQLException{
         StringBuilder sql = new StringBuilder();
-        sql.append("UPDATE produtos ");
-        sql.append("SET descricao = ?, preco = ?, quantidade = ?, codigo_for = ? ");
+        sql.append("UPDATE Produtos ");
+        sql.append("SET descricao = ?, preco = ?, quantidade = ?, fornecedor_codigo = ? ");
         sql.append("WHERE codigo = ? ");
         
         Connection conexao = ConnectionFactory.conectar();

@@ -4,6 +4,13 @@
 
 - File > New > Dynamic Web Project
 
+## Criação do banco
+-  seguir script da raiz do projeto
+	- script.sql
+
+## Página Inicial
+- [Home](http://localhost:8080/farmacia/faces/pages/principal.xhtml)
+
 ## Configurando
 ### Libs
 - javax.faces-2.2.9
